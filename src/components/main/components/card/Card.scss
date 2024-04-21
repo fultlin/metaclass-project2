@@ -1,0 +1,48 @@
+.card {
+    max-width: 360px;
+    max-height: 506px;
+    height: 100%;
+    margin-bottom: 80px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        max-height: 360px;
+        object-fit: cover;
+    }
+
+    .card__description {
+        margin-top: 24px;
+    }
+
+    .card__title {
+        font-family: 'Roboto';
+        font-size: 20px;
+        font-weight: 700;
+        color: black;
+    }
+
+    .card__description {
+        color: #AFADB5;
+        font-size: 16px;
+        display: block;
+        margin-top: 8px;
+    }
+
+    .card__raiting-date {
+        color: #AFADB5;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        .raiting {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+            max-width: max-content;
+        }
+    }
+}

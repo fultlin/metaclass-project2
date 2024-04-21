@@ -1,0 +1,252 @@
+.repos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.repos__navigation {
+    margin: 0 auto;
+    max-width: max-content;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.main {
+    max-width: 1237px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    h1 {
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 28px;
+        margin-bottom: 60px;
+    }
+
+    button {
+        border: none;
+        svg {
+            stroke: #151411;
+        }
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: #d0cfd3;
+    }
+
+    button:active {
+        background-color: #1F883D;
+    }
+
+    button:disabled {
+        background-color: transparent;
+        svg {
+            stroke: #AFADB5;
+        }
+    }
+
+    .page-number {
+        width: 38px;
+        height: 42px;
+    }
+
+    .page-number:disabled {
+        background-color: #1F883D;
+        color: #000000;
+    }
+
+    .search__drop {
+        width: 300px;
+        margin-bottom: 20px;
+        .super-input {
+            width: 300px;
+            padding: 16px 12px;
+            border: none;
+            color: #AFADB5;
+        }
+    }
+
+    .searchIcon {
+        background-color: #1F883D;
+        border-radius: 6px;
+        padding: 14px 20px;
+        max-width: max-content;
+    }
+
+    .inputSearchBlock {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 36px;
+
+        .super-input {
+            height: 55px;
+            width: 1100px;
+            border: none;
+            padding: 18px 12px;
+        }
+    }
+
+
+}
+
+.repo__page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-top: 40px;
+    font-family: 'Roboto', sans-serif;
+
+    .repo__page-top {
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 1.09091;
+        color: #000000;
+        display: flex;
+        flex-direction: row;
+        gap:16px;
+        max-width: max-content;
+        align-items: center;
+        .repo__page-ava {
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 6px;
+        }
+    }
+
+    .repo__page-middle {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .link {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            max-width: max-content;
+            font-weight: 700;
+            font-size: 16px;
+            color: #0080FF;
+        }
+
+        .repo__page-topics {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            li {
+                font-weight: 700;
+                font-size: 12px;
+                text-align: center;
+                color: #06c;
+                background-color: #daedff;
+                padding: 4px 16px;
+                border-radius: 20px;
+            }
+        }
+
+        .repo_page-stars-watch-forks {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            max-width: max-content;
+            li {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 1.28571;
+                color: #AFADB5;
+                max-width: max-content;
+            }
+        }
+
+        .repo__page-contributors-languages {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 1.22222;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            gap: 200px;
+
+            .lanuage {
+                font-weight: 400;
+                font-size: 14px;
+            }
+            .language-percentage {
+                color: #AFADB5;
+                font-weight: 400;
+                font-size: 14px;
+            }
+
+            ul {
+                max-width: max-content;
+            }
+
+            .repo__page-contributors-count{
+                font-weight: 600;
+                font-size: 10px;
+                line-height: 1;
+                color: rgba(0, 0, 0, 0.62);
+                width: 16px;
+                height: 16px;
+                border-radius: 100%;
+                background-color: #AFADB5;
+                position: absolute;
+                text-align: center;
+                padding: 0 2px;
+                padding-top: 5px;
+                top: -5px;
+            }
+
+
+            .repo__page-contributor {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+                margin-top: 8px;
+                font-size: 16px;
+                max-width: max-content;
+            }
+
+            .repo__page-contributor-ava {
+                width: 32px;
+                height: 32px;
+                border-radius: 100%;
+            }
+        }
+    }
+
+    .repo__page-readme {
+        background-color: transparent;
+        color: #000000;
+        margin: 32px 0;
+        pre {
+            background-color: #dddddd;
+            color: #000000;
+        }
+    }
+    
+}
+
+.loader {
+    position: absolute;
+    top: 400px;
+    left: 950px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
