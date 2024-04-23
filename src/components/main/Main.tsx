@@ -3,6 +3,7 @@ import List from "./list/List";
 import RepoPage from "./repoPage/RepoPage";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
+import handleSearch from "../../utils/search";
 
 interface Repo {
     name: string;
@@ -15,12 +16,42 @@ const Main = () => {
     const [result, setResult] = useState<Repo[]>([]);
     const [page, setPage] = useState(1);
     const repoPerPage = 9;
+    
+    const [name, setName] = useState('ktsstudio')
+
+    // const name = handleSearch() || 'ktsstudio'
 
     useEffect(() => {
-        axios.get('https://api.github.com/orgs/ktsstudio/repos').then(response => {
+        axios.get(`https://api.github.com/orgs/${name}/repos`).then(response => {
             setResult(response.data);
         });
     }, []);
+
+    // useEffect(() => {
+    //     setName(handleSearch())
+    // }, [name])
+
+    // useEffect(() => {
+    //     axios.get(`https://api.github.com/orgs/${name}/repos`).then(response => {
+    //         setResult(response.data);
+    //     });
+    // }, []);
+
+    // useEffect(() => {
+
+    //     const searchResult = handleSearch();
+    //     console.log('sercres ', name);
+        
+    //     if (searchResult) {
+    //         setName(searchResult);
+    //     }
+
+    //     axios.get(`https://api.github.com/orgs/${name}/repos`).then(response => {
+    //         setResult(response.data);
+    //     });
+    // }, [name]);
+
+
 
     const indexOfLastRepo = page * repoPerPage;
     const indexOfFirstRepo = indexOfLastRepo - repoPerPage;
