@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useState } from "react";
 import Card from "../components/card/Card";
 import { Link } from "react-router-dom";
 import MultiDropdown from "./components/multiDropDown/MultiDropDown";
@@ -18,9 +18,21 @@ interface ListProps {
     page: number;
     totalPages: number;
     setPage: any;
+    setName: (name: string) => void;
 }
 
-const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage }: ListProps) => {
+const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName }: ListProps) => {
+
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (value: string) => {
+        setInputValue(value);
+    };
+
+    const handleSearchClick = () => {
+        setName(inputValue);
+    };
+
     return (
         <div className="main">
             <h1>List of organization repositories</h1>
@@ -35,8 +47,8 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
                         
                 </MultiDropdown>
                 <div className="inputSearchBlock">
-                    <Input onChange={() => { return }} className="search__input--input"id="inputSearch"></Input>
-                    <SearchIcon/>
+                    <Input value={inputValue} onChange={handleInputChange} className="search__input--input"id="inputSearch"></Input>
+                    <SearchIcon onSearch={handleSearchClick}/>
                 </div>
             </div>
             <div>

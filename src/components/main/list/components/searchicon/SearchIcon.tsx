@@ -1,9 +1,7 @@
-import handleSearch from "../../../../../utils/search";
-
-const SearchIcon = () => {
+const SearchIcon = ({ onSearch }:any) => {
 
   return (
-    <div className="searchIcon" onClick={handleSearch}>
+    <div className="searchIcon" onClick={onSearch}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_508_313)">
           <path

@@ -25,7 +25,7 @@ const Main = () => {
         axios.get(`https://api.github.com/orgs/${name}/repos`).then(response => {
             setResult(response.data);
         });
-    }, []);
+    }, [name]);
 
     // useEffect(() => {
     //     setName(handleSearch())
@@ -85,9 +85,10 @@ const Main = () => {
                     page={page}
                     totalPages={totalPages}
                     setPage={setPage}
+                    setName={setName}
                 />}
             />
-            <Route path="/:name" element={<RepoPage />} />
+            <Route path="/:name" element={<RepoPage nameAcc={name}/>} />
         </Routes>
     );
 };

@@ -13,7 +13,7 @@ import IconFork from "./components/IconFork/IconFork";
 import decodeBase64 from "../../../utils/decodebase";
 
 
-const RepoPage = () => {
+const RepoPage = ({nameAcc}:any ) => {
     const { name } = useParams<{ name: string }>();
     const [repoInfo, setRepoInfo] = useState<any>(null);
     const [lang, setLang] = useState<{ [key: string]: number }>({});
@@ -24,7 +24,7 @@ const RepoPage = () => {
     const [readme, setReadme] = useState<any>('')
 
     useEffect(() => {
-        axios.get(`https://api.github.com/repos/ktsstudio/${name}`).then(response => {
+        axios.get(`https://api.github.com/repos/${nameAcc}/${name}`).then(response => {
             setRepoInfo(response.data);
             setTopics(response.data.topics)
             setAva(response.data.owner.avatar_url)
@@ -34,15 +34,15 @@ const RepoPage = () => {
     }, [name]); 
 
     useEffect(() => {
-        axios.get(`https://api.github.com/repos/ktsstudio/${name}/languages`).then(response => {
+        axios.get(`https://api.github.com/repos/${nameAcc}/${name}/languages`).then(response => {
             setLang(response.data)
         })
 
-        axios.get(`https://api.github.com/repos/ktsstudio/${name}/contributors`).then(response => {
+        axios.get(`https://api.github.com/repos/${nameAcc}/${name}/contributors`).then(response => {
             setContributors(response.data)
         })
 
-        axios.get(`https://api.github.com/repos/ktsstudio/${name}/readme`).then(response => {
+        axios.get(`https://api.github.com/repos/${nameAcc}/${name}/readme`).then(response => {
             setReadmeName(response.data.name)
             const markdown = decodeBase64(response.data.content);
             const html = marked(markdown);
