@@ -1,0 +1,12 @@
+@import url('./reset.scss');
+@import url('./fonts.scss');
+@import url('./index.scss');
+@import url('../components/header/styleHeader.scss');
+@import url('../components/main/components/card/Card.scss');
+@import url('../components/main/Main.scss');
+
+
+.wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+}

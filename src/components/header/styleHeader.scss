@@ -1,6 +1,8 @@
+@use '../../styles/index.scss';
+
 header {
     padding: 20px 0px;
-    border-bottom: 1px solid #AFADB5;
+    border-bottom: 1px solid ;
 }
 
 .header {
@@ -15,9 +17,9 @@ header {
     gap: 24px;
     max-width: max-content;
     .logo-title--text {
-        font-family: 'Roboto', sans-serif;
+        font-family: index.$font;
         font-size: 24px;
         font-weight: 700;
-        color: black;
+        color: index.$text-primary;
     }
 }

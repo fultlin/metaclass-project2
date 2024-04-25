@@ -1,4 +1,4 @@
-@use '../../index.scss';
+@use '../../styles/index.scss';
 
 .repos {
     display: flex;
@@ -20,7 +20,7 @@
 .main {
     max-width: 1237px;
     margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: index.$font;
     color: index.$text-primary;
     h1 {
         font-size: 48px;
@@ -39,17 +39,17 @@
 
     button:hover {
         cursor: pointer;
-        background-color: #d0cfd3;
+        background-color: index.$button-primary-bg-hover;
     }
 
     button:active {
-        background-color: #1F883D;
+        background-color: index.$input-border-focus;
     }
 
     button:disabled {
         background-color: transparent;
         svg {
-            stroke: #AFADB5;
+            stroke: index.$input-placeholder;
         }
     }
 
@@ -59,7 +59,7 @@
     }
 
     .page-number:disabled {
-        background-color: #1F883D;
+        background-color: index.$text-accent;
         color: #000000;
     }
 
@@ -70,12 +70,12 @@
             width: 300px;
             padding: 16px 12px;
             border: none;
-            color: #AFADB5;
+            color: index.$input-placeholder;
         }
     }
 
     .searchIcon {
-        background-color: #1F883D;
+        background-color: index.$text-accent;
         border-radius: 6px;
         padding: 14px 20px;
         max-width: max-content;
@@ -107,13 +107,13 @@
     max-width: 1440px;
     margin: 0 auto;
     padding-top: 40px;
-    font-family: 'Roboto', sans-serif;
+    font-family: index.$font;
 
     .repo__page-top {
         font-weight: 700;
         font-size: 44px;
         line-height: 1.09091;
-        color: #000000;
+        color: index.$text-primary;
         display: flex;
         flex-direction: row;
         gap:16px;
@@ -138,7 +138,7 @@
             max-width: max-content;
             font-weight: 700;
             font-size: 16px;
-            color: #0080FF;
+            color: index.$link-color;
         }
 
         .repo__page-topics {
@@ -149,8 +149,8 @@
                 font-weight: 700;
                 font-size: 12px;
                 text-align: center;
-                color: #06c;
-                background-color: #daedff;
+                color: index.$li-color;
+                background-color: index.$li-background;
                 padding: 4px 16px;
                 border-radius: 20px;
             }
@@ -168,7 +168,7 @@
                 font-weight: 600;
                 font-size: 14px;
                 line-height: 1.28571;
-                color: #AFADB5;
+                color: index.$text-secondary;
                 max-width: max-content;
             }
         }
@@ -187,7 +187,7 @@
                 font-size: 14px;
             }
             .language-percentage {
-                color: #AFADB5;
+                color: index.$text-secondary;
                 font-weight: 400;
                 font-size: 14px;
             }
@@ -204,7 +204,7 @@
                 width: 16px;
                 height: 16px;
                 border-radius: 100%;
-                background-color: #AFADB5;
+                background-color: index.$text-secondary;
                 position: absolute;
                 text-align: center;
                 padding: 0 2px;
@@ -237,7 +237,7 @@
         margin: 32px 0;
         pre {
             background-color: #dddddd;
-            color: #000000;
+            color: index.$text-primary;
         }
     }
     
