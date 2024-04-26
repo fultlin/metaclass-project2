@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Input from '../input/Input';
 
 export type Option = {
@@ -17,142 +17,96 @@ export type MultiDropdownProps = {
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value, onChange, disabled, getTitle }) => {
-    const startedVal = value.length ? getTitle(value) : '';
-    const [placeHolderText, setPlaceHolderText] = useState(getTitle(value))
-    const [displayOpt, setDisplayOpt] = useState('none');
-    const [inputVal, setInputVal] = useState(startedVal);
-    const [flag, setFlag] = useState(true);
-    const [parametrs, setParametrs] = useState(options)
-    let sss: any = ''
 
-    const handleOutsideClick = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('.multi__options') === null && (target !== target.closest('.multi__input')?.querySelector('input'))) {
-            setFlag(false);
-        } else {
-            setFlag(true);
+    const wrapperRef = React.useRef<HTMLDivElement>(null)
+    const ref = React.useRef<HTMLInputElement>(null)
+    const [filter, setFilter] = React.useState('')
+    const [isOpened, setIsOpened] = React.useState(false)
+
+    const open = () => {
+        setIsOpened(true)
+    }
+
+    React.useEffect(() => {
+        const handlerClick = (e: MouseEvent) => {
+            if (!wrapperRef.current?.contains(e.target as HTMLElement)) {
+                setIsOpened(false)
+            }
         }
-    };
 
-    useEffect(() => {
-        document.addEventListener('click', handleOutsideClick);
+        window.addEventListener('click', handlerClick)
+
         return () => {
-            document.removeEventListener('click', handleOutsideClick);
-        };
-    }, []);
-
-    const clickInput = () => {
-        setDisplayOpt(prevState => prevState === 'none' ? 'block' : 'none');
-    };
-
-    const handleInputChange = () => {
-        console.log(parametrs);
-
-    };
-
-    const optionClick = (val: Option) => {
-        let newValue: Option[] = [...value];
-        let flag = false;
-        let ind = '';
-        newValue.forEach((v) => {
-            if (v.key === val.key) {
-                flag = true;
-                ind = v.key;
-            }
-        });
-        if (flag) {
-            for (let i = 0; i < newValue.length; i++) {
-                if (newValue[i].key === ind) {
-                    newValue.splice(i, 1)
-                }
-            }
-        } else {
-            newValue.push(val);
+            window.removeEventListener('click', handlerClick)
         }
+    }, [])
 
-        onChange(newValue);
-        setInputVal(getTitle(newValue));
-    };
 
-    let focusPocus = () => {
-        setPlaceHolderText(inputVal);
-        setInputVal('');
-        document.addEventListener('keydown', (event) => {
-            if (!event.ctrlKey && !event.altKey && !event.metaKey &&
-                event.code !== "ShiftLeft" && event.code !== "ShiftRight" &&
-                event.code !== "Backspace" && event.code !== "Space" &&
-                event.code !== "Enter" && event.code !== 'Delete') {
-                sss += event.key;
-                setInputVal(sss);
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
-            } else if (event.code === "Backspace") {
-                sss = sss.slice(0, -1);
-                setInputVal(sss);
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
-            } if (event.code === "Delete") {
-                sss = ''
-                setInputVal(sss)
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
+    React.useEffect(() => {
+        if (isOpened) {
+            setFilter('')
+        }
+    }, [isOpened])
+
+
+    const title = React.useMemo(() => getTitle(value), [getTitle, value])
+
+    const isEmpty = value.length === 0
+
+    const filteredOptions = React.useMemo(() => {
+        const str = filter.toLocaleLowerCase()
+        return options.filter(
+            (o) => o.value.toLocaleLowerCase().indexOf(str) === 0
+        )
+    }, [filter, options])
+
+    const selectedKeysSet = React.useMemo<Set<Option['key']>>(
+        () => new Set(value.map(({ key }) => {
+            return key
+        })),
+        [value]
+    )
+
+    const onSelect = React.useCallback(
+        (option: Option) => {
+            if (disabled) {
+                return
             }
-        });
-    }
 
-    let unFocusPocus = () => {
-        alert(3)
-        setParametrs(options)
-        document.removeEventListener('keydown', (event) => {
-            if (!event.ctrlKey && !event.altKey && !event.metaKey &&
-                event.code !== "ShiftLeft" && event.code !== "ShiftRight" &&
-                event.code !== "Backspace" && event.code !== "Space" &&
-                event.code !== "Enter" && event.code !== 'Delete') {
-                sss += event.key;
-                setInputVal(sss);
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
-            } else if (event.code === "Backspace") {
-                sss = sss.slice(0, -1);
-                setInputVal(sss);
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
-            } if (event.code === "Delete") {
-                sss = ''
-                setInputVal(sss)
-                setParametrs(options.filter(qwe => {
-                    return qwe.value.includes(sss);
-                }));
+            if (selectedKeysSet.has(option.key)) {
+                onChange([...value].filter(({ key }) => key !== option.key))
+            } else {
+                console.log(selectedKeysSet);
+                onChange([...value, option])
             }
-        })
-    }
+            ref.current?.focus()
+        },
+        [disabled, onChange, value, selectedKeysSet]
+    )
+
+    const opened = isOpened && !disabled
+
     return (
-        <div className={className}>
-            <Input
-                placeholder={placeHolderText}
-                value={inputVal}
-                className='multi__input'
-                onChange={() => handleInputChange}
-                onClick={clickInput}
-                onFocus={focusPocus}
-                onBlur={() => unFocusPocus}
+        <div className={''} ref={wrapperRef}>
+            <Input className='multi_drop_field'
+                onClick={open} disabled={disabled}
+                placeholder={title}
+                value={opened ? filter : isEmpty ? '' : title}
+                onChange={setFilter}
+                ref={ref}
             />
-            {(!disabled && parametrs.length > 0 && parametrs && flag) && (
-                <div className="multi__options" style={{ display: displayOpt }}>
-                    <ul>
-                        {parametrs.map(option => (
-                            options.includes(option) ? <li key={option.key} className='options__li' onClick={() => optionClick(option)} >{option.value}</li> : ''
-                        ))}
-                    </ul>
+            {opened && (
+                <div className={''}>
+                    {filteredOptions.map((option) => (
+                        <button
+                            className={''} key={option.key} onClick={() => onSelect(option)}>
+                            {option.value}
+                        </button>
+                    ))}
                 </div>
             )}
         </div>
-    );
+    )
 };
 
 export default MultiDropdown;

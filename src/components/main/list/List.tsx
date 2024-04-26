@@ -5,6 +5,7 @@ import MultiDropdown from "./components/multiDropDown/MultiDropDown";
 import Input from "./components/input/Input";
 import { Option } from "./components/multiDropDown/MultiDropDown";
 import SearchIcon from "./components/searchicon/SearchIcon";
+import React from "react";
 
 
 
@@ -24,6 +25,7 @@ interface ListProps {
 const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName }: ListProps) => {
 
     const [inputValue, setInputValue] = useState('');
+    const [value, setValue] = React.useState<Option[]>([]);
 
     const handleInputChange = (value: string) => {
         setInputValue(value);
@@ -37,15 +39,17 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
         <div className="main">
             <h1>List of organization repositories</h1>
             <div className="seletcs">
-                <MultiDropdown className={'search__drop'} options={[
-                    { key: 'msk', value: 'Москва' },
-                    { key: 'spb', value: 'Санкт-Петербург' },
-                    { key: 'ekb', value: 'Екатеринбург' }
+                <MultiDropdown
+                    className={'search__drop'}
+                    options={[
+                        { key: 'msk', value: 'Москва' },
+                        { key: 'spb', value: 'Санкт-Петербург' },
+                        { key: 'ekb', value: 'Екатеринбург' }
                     ]}
-                    value={[{ key: 'msk', value: 'Москва' }]} onChange={() => ({ key, value }: Option) => console.log('Выбрано:', key, value)}
-                    getTitle={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`} >
-                        
-                </MultiDropdown>
+                    value={value}
+                    onChange={setValue}
+                    getTitle={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
+                />
                 <div className="inputSearchBlock">
                     <Input value={inputValue} onChange={handleInputChange} className="search__input--input"id="inputSearch"></Input>
                     <SearchIcon onSearch={handleSearchClick}/>
@@ -54,7 +58,7 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
             <div>
                 <ul className="repos">
                     {currentRepos.map(repo => (
-                        <Link to={'/repo/:name'}>
+                        <Link key={repo.id} to={'/repo/:name'}>
                             <Card id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at}/>
                         </Link>
                     ))}
