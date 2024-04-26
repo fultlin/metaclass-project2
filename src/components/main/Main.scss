@@ -70,8 +70,15 @@
             width: 300px;
             padding: 16px 12px;
             border: none;
-            color: index.$input-placeholder;
         }
+
+        .super-input:focus {
+            outline-color: index.$input-border-focus;
+        }
+    }
+
+    .search__drop:focus {
+        border-color: index.$input-border-focus;
     }
 
     .searchIcon {
@@ -98,9 +105,24 @@
             border: none;
             padding: 18px 12px;
         }
+
+        .super-input:focus {
+            outline-color: index.$input-border-focus;;
+        }
     }
 
+    .multi_drop {
+        border: 1px solid index.$input-border-focus;
+        border-radius: 6px;
+        padding: 14px 12px;
+        width: 300px;
+        height: 52px;
+    }
 
+    .multi_drop_field {
+        max-width: 100%;
+        height: 100%;
+    }
 }
 
 .repo__page {

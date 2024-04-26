@@ -16,7 +16,7 @@ export type MultiDropdownProps = {
 
 };
 
-const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value, onChange, disabled, getTitle }) => {
+const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value, onChange, disabled, getTitle,}) => {
 
     const wrapperRef = React.useRef<HTMLDivElement>(null)
     const ref = React.useRef<HTMLInputElement>(null)
@@ -87,10 +87,10 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
     const opened = isOpened && !disabled
 
     return (
-        <div className={''} ref={wrapperRef}>
-            <Input className='multi_drop_field'
+        <div className='seletcs' ref={wrapperRef}>
+            <Input className='search__drop'
                 onClick={open} disabled={disabled}
-                placeholder={title}
+                placeholder={'Enter type'}
                 value={opened ? filter : isEmpty ? '' : title}
                 onChange={setFilter}
                 ref={ref}

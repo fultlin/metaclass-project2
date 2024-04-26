@@ -6,6 +6,7 @@ import Input from "./components/input/Input";
 import { Option } from "./components/multiDropDown/MultiDropDown";
 import SearchIcon from "./components/searchicon/SearchIcon";
 import React from "react";
+import RepoStore from "../../../store/RepoStore/RepoStore";
 
 
 
@@ -71,7 +72,7 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
                     </svg>
                 </button>
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map(number => (
-                    <button key={number} onClick={() => setPage(number)} disabled={number === page} className="page-number">
+                    <button key={number} onClick={() => RepoStore.setPage(number)} disabled={number === page} className="page-number">
                         {number}
                     </button>
                 ))}
