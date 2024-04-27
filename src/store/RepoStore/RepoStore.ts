@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
-import { searchStore } from "store/SearchStore/searchStore";
 
 interface Repo {
     name: string;
