@@ -15,15 +15,17 @@ class RepoStore {
     page: number = 1;
     name: string = 'ktsstudio';
     repoPerPage: number = 9;
+    type: string = 'all';
 
     constructor() {
         makeAutoObservable(this);
         this.setName = this.setName.bind(this);
+        this.setType = this.setType.bind(this)
         this.fetchRepos();
     }
 
     fetchRepos(): void {
-        axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos`)
+        axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
             .then(response => {
                 this.repos = response.data;
             })
@@ -40,6 +42,11 @@ class RepoStore {
 
     setPage(newPage: number): void {
         this.page = newPage;
+    }
+
+    setType(newType: string): void {
+        this.type = newType;
+        this.fetchRepos();
     }
 
     get currentRepos(): Repo[] {

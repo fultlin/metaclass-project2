@@ -68,20 +68,18 @@
     .search__drop {
         width: 300px;
         margin-bottom: 20px;
+        padding: 16px 12px;
+        border: none;
         .super-input {
             width: 300px;
-            padding: 16px 12px;
             border: none;
         }
 
-        .super-input:focus {
-            outline-color: index.$input-border-focus;
+        .search__drop:active {
+            border-color: index.$input-border-focus;
         }
     }
 
-    .search__drop:focus {
-        border-color: index.$input-border-focus;
-    }
 
     .searchIcon {
         background-color: index.$text-accent;

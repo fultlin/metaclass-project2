@@ -7,6 +7,7 @@ import { Option } from "./components/multiDropDown/MultiDropDown";
 import SearchIcon from "./components/searchicon/SearchIcon";
 import React from "react";
 import RepoStore from "../../../store/RepoStore/RepoStore";
+import TypeDropDown from "./components/typeDropDown/TypeDropDown";
 
 
 
@@ -21,9 +22,10 @@ interface ListProps {
     totalPages: number;
     setPage: any;
     setName: (name: string) => void;
+    setType: (name: string) => void;
 }
 
-const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName }: ListProps) => {
+const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName, setType }: ListProps) => {
 
     const [inputValue, setInputValue] = useState('');
     const [value, setValue] = React.useState<Option[]>([]);
@@ -36,11 +38,15 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
         setName(inputValue);
     };
 
+    const handleNewType = (value: string) => {
+        setType(value)
+    }
+
     return (
         <div className="main">
             <h1>List of organization repositories</h1>
             <div className="seletcs">
-                <MultiDropdown
+                {/* <MultiDropdown
                     className={'search__drop'}
                     options={[
                         { key: 'msk', value: 'Москва' },
@@ -50,7 +56,9 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
                     value={value}
                     onChange={setValue}
                     getTitle={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
-                />
+                /> */}
+                {/* <TypeDropDown/> */}
+                <TypeDropDown onChange={handleNewType}/>
                 <div className="inputSearchBlock">
                     <Input value={inputValue} onChange={handleInputChange} className="search__input--input"id="inputSearch"></Input>
                     <SearchIcon onSearch={handleSearchClick}/>

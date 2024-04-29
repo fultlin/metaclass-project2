@@ -27,6 +27,7 @@ const Main = observer(() => {
                     totalPages={repoStore.totalPages}
                     setPage={repoStore.setPage}
                     setName={repoStore.setName}
+                    setType={repoStore.setType}
                 />}
             />
             <Route path="/:name" element={<RepoPage nameAcc={repoStore.name} />} />
