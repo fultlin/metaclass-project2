@@ -8,14 +8,15 @@ interface Repo {
     };
     id: number;
     description: string;
+
 }
 
 class RepoStore {
     repos: Repo[] = [];
-    page: number = 1;
-    name: string = 'ktsstudio';
+    page: number = localStorage.getItem('page') ? parseInt(localStorage.getItem('page')) : 1;
+    name: string = localStorage.getItem('name') || 'ktsstudio';
     repoPerPage: number = 9;
-    type: string = 'all';
+    type: string = localStorage.getItem('type') || 'all';
 
     constructor() {
         makeAutoObservable(this);
@@ -36,16 +37,18 @@ class RepoStore {
 
     setName(newName: string): void {
         this.name = newName;
+        localStorage.setItem('name', newName);
         this.fetchRepos();
     }
 
-
     setPage(newPage: number): void {
         this.page = newPage;
+        localStorage.setItem('page', newPage.toString());
     }
 
     setType(newType: string): void {
         this.type = newType;
+        localStorage.setItem('type', newType);
         this.fetchRepos();
     }
 
