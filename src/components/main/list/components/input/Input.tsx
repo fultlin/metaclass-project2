@@ -8,7 +8,7 @@ export type InputProps = Omit<
     afterSlot?: React.ReactNode;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = React.memo(React.forwardRef<HTMLInputElement, InputProps>(
     ({ value, onChange, afterSlot, className, ...rest }, ref) => {
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
@@ -29,6 +29,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             </div>
         );
     }
-);
+));
 
 export default Input;

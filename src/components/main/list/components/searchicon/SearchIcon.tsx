@@ -1,4 +1,6 @@
-const SearchIcon = ({ onSearch }:any) => {
+import React from "react";
+
+const SearchIcon = React.memo(({ onSearch }:any) => {
 
   return (
     <div className="searchIcon" onClick={onSearch}>
@@ -17,6 +19,6 @@ const SearchIcon = ({ onSearch }:any) => {
       </svg>
     </div>
   );
-};
+});
 
 export default SearchIcon

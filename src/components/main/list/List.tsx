@@ -3,9 +3,9 @@ import Card from "../components/card/Card";
 import { Link } from "react-router-dom";
 import Input from "./components/input/Input";
 import SearchIcon from "./components/searchicon/SearchIcon";
-import React from "react";
 import RepoStore from "../../../store/RepoStore/RepoStore";
 import TypeDropDown from "./components/typeDropDown/TypeDropDown";
+import React from "react";
 
 
 
@@ -23,8 +23,7 @@ interface ListProps {
     setType: (name: string) => void;
 }
 
-const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName, setType }: ListProps) => {
-
+const List = React.memo(({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setName, setType }: ListProps) => {
     const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (value: string) => {
@@ -77,6 +76,6 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
             </div>
         </div>
     );
-};
+});
 
 export default List;

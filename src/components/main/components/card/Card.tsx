@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Key } from "react"
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,7 @@ export type CardProps = {
 }
 
 
-const Card = (data: {
+const Card = React.memo((data: {
     description: string;
     name: string; id: Key | null | undefined; owner: { avatar_url: string | undefined } ;
     stargazers_count: number;
@@ -45,6 +46,6 @@ const Card = (data: {
         </Link>
         
     )
-}
+})
 
 export default Card

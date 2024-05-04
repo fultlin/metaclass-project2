@@ -1,4 +1,6 @@
-const TypeDropDown = ({ onChange }: any) => {
+import React from "react"
+
+const TypeDropDown = React.memo(({ onChange }: any) => {
 
     const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
         onChange(e.target.value)
@@ -15,6 +17,6 @@ const TypeDropDown = ({ onChange }: any) => {
             <option value="member">member</option>
         </select>
     )
-}
+})
 
 export default TypeDropDown

@@ -11,9 +11,10 @@ import IconStar from './components/IconStar/IconStar';
 import IconWatch from "./components/IconWatch/IconWatch";
 import IconFork from "./components/IconFork/IconFork";
 import decodeBase64 from "../../../utils/decodebase";
+import React from "react";
 
 
-const RepoPage = ({nameAcc}:any ) => {
+const RepoPage = React.memo(({nameAcc}:any ) => {
     const { name } = useParams<{ name: string }>();
     const [repoInfo, setRepoInfo] = useState<any>(null);
     const [lang, setLang] = useState<{ [key: string]: number }>({});
@@ -123,6 +124,6 @@ const RepoPage = ({nameAcc}:any ) => {
 
         </div>
     );
-};
+});
 
 export default RepoPage;
