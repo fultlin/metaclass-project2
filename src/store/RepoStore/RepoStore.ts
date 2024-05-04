@@ -13,7 +13,7 @@ interface Repo {
 
 class RepoStore {
     repos: Repo[] = [];
-    page: number = localStorage.getItem('page') ? parseInt(localStorage.getItem('page')) : 1;
+    page: number = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1;
     name: string = localStorage.getItem('name') || 'ktsstudio';
     repoPerPage: number = 9;
     type: string = localStorage.getItem('type') || 'all';
