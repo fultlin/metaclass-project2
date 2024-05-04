@@ -25,8 +25,8 @@ class RepoStore {
         this.fetchRepos();
     }
 
-    fetchRepos(): void {
-        axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
+    async fetchRepos(): Promise<void> {
+        await axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
             .then(response => {
                 this.repos = response.data;
             })
@@ -63,4 +63,6 @@ class RepoStore {
     }
 }
 
-export default new RepoStore();
+const repoStore = new RepoStore()
+
+export default repoStore;

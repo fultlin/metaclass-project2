@@ -10,7 +10,13 @@ const Main = observer(() => {
         pageNumbers.push(i);
     }
 
-    
+    const prevPage = () => {
+        repoStore.setPage(repoStore.page - 1)
+    }
+
+    const nextPage = () => {
+        repoStore.setPage(repoStore.page + 1)
+    }
 
     return (
         <Routes>
@@ -18,8 +24,8 @@ const Main = observer(() => {
                 path="/"
                 element={<List
                     currentRepos={repoStore.currentRepos}
-                    onClickPrev={() => repoStore.setPage(repoStore.page - 1)}
-                    onClickNext={() => repoStore.setPage(repoStore.page + 1)}
+                    onClickPrev={prevPage}
+                    onClickNext={nextPage}
                     indexOfFirstRepo={(repoStore.page - 1) * repoStore.repoPerPage}
                     indexOfLastRepo={repoStore.page * repoStore.repoPerPage}
                     result={repoStore.repos}

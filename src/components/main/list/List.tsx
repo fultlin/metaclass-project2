@@ -1,9 +1,7 @@
 import { MouseEventHandler, useState } from "react";
 import Card from "../components/card/Card";
 import { Link } from "react-router-dom";
-import MultiDropdown from "./components/multiDropDown/MultiDropDown";
 import Input from "./components/input/Input";
-import { Option } from "./components/multiDropDown/MultiDropDown";
 import SearchIcon from "./components/searchicon/SearchIcon";
 import React from "react";
 import RepoStore from "../../../store/RepoStore/RepoStore";
@@ -28,7 +26,6 @@ interface ListProps {
 const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexOfLastRepo, result, page, totalPages, setPage, setName, setType }: ListProps) => {
 
     const [inputValue, setInputValue] = useState('');
-    const [value, setValue] = React.useState<Option[]>([]);
 
     const handleInputChange = (value: string) => {
         setInputValue(value);
@@ -46,18 +43,6 @@ const List = ({ currentRepos, onClickPrev, onClickNext, indexOfFirstRepo, indexO
         <div className="main">
             <h1>List of organization repositories</h1>
             <div className="seletcs">
-                {/* <MultiDropdown
-                    className={'search__drop'}
-                    options={[
-                        { key: 'msk', value: 'Москва' },
-                        { key: 'spb', value: 'Санкт-Петербург' },
-                        { key: 'ekb', value: 'Екатеринбург' }
-                    ]}
-                    value={value}
-                    onChange={setValue}
-                    getTitle={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
-                /> */}
-                {/* <TypeDropDown/> */}
                 <TypeDropDown onChange={handleNewType}/>
                 <div className="inputSearchBlock">
                     <Input value={inputValue} onChange={handleInputChange} className="search__input--input"id="inputSearch"></Input>
