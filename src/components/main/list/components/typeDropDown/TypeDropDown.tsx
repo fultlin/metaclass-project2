@@ -3,9 +3,9 @@ import React, { ChangeEvent } from "react"
 const TypeDropDown = React.memo(({ onChange }: any) => {
 
     const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        
         const selectedValue = e.target.value;
         onChange(selectedValue)
+        console.log(selectedValue)
       };
 
     return (
