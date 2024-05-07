@@ -1,6 +1,6 @@
 const handleSearch = () => {
 
-    const nameInp = document.getElementById('inputSearch')?.value
+    const nameInp = (document.getElementById('inputSearch') as HTMLInputElement)?.value;
 
     return nameInp
 }

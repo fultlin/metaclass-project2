@@ -1,11 +1,12 @@
-import React from "react"
+import React, { ChangeEvent } from "react"
 
 const TypeDropDown = React.memo(({ onChange }: any) => {
 
-    const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
-        onChange(e.target.value)
-        console.log(e.target.value)
-    }
+    const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        
+        const selectedValue = e.target.value;
+        onChange(selectedValue)
+      };
 
     return (
         <select name="Enter type" id="" className="search__drop" onChange={handleTypeChange}>

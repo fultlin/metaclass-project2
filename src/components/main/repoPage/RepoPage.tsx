@@ -21,7 +21,6 @@ const RepoPage = React.memo(({nameAcc}:any ) => {
     const [contributors, setContributors] = useState<any[]>([])
     const [topics, setTopics] = useState<any>(null)
     const [ava, setAva] = useState<string>('')
-    const [readmeName, setReadmeName] = useState<String>('')
     const [readme, setReadme] = useState<any>('')
 
     useEffect(() => {
@@ -44,7 +43,6 @@ const RepoPage = React.memo(({nameAcc}:any ) => {
         })
 
         axios.get(`https://api.github.com/repos/${nameAcc}/${name}/readme`).then(response => {
-            setReadmeName(response.data.name)
             const markdown = decodeBase64(response.data.content);
             const html = marked(markdown);
             setReadme(html);
