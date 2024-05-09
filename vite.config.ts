@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react'
 
 import path from 'path';
 
-import tsconfig from './tsconfig.json';
 
 const SRC_PATH = path.resolve(__dirname, 'src');
 
@@ -19,10 +18,8 @@ const parseTsConfigPaths = (paths: Record<string, string[]>): Record<string, str
   return webpackConfigAliases;
 };
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: parseTsConfigPaths(tsconfig.compilerOptions.paths),
   },
 })

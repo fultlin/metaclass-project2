@@ -3,6 +3,7 @@ import List from './list/List';
 import RepoPage from './repoPage/RepoPage';
 import { Route, Routes } from 'react-router-dom';
 import repoStore from '../../store/RepoStore/RepoStore';
+import React from 'react';
 
 const Main = observer(() => {
     const pageNumbers: number[] = [];

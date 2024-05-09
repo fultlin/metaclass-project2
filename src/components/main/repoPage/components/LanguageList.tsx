@@ -1,3 +1,5 @@
+import React from "react";
+
 function LanguageList({ languages }:any) {
     const totalBytes:any = Object.values(languages).reduce((sum:any, num:any) => sum + num, 0);
 
