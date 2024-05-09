@@ -46,8 +46,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
-    new MiniCssExtractPlugin()
-  ],
+    new MiniCssExtractPlugin(),
+    process.env.NODE_ENV === 'development' && new ReactRefreshWebpackPlugin()
+  ].filter(Boolean),
 
   module: {
     rules: [
