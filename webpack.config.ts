@@ -36,20 +36,17 @@ const getSettingsForStyles = (withModules = false) => {
 };
 
 module.exports = {
-  mode: 'development',
-  entry: path.join(srcPath, 'main.tsx'),
-  target: !isProd ? 'web' : 'browsersList',
+  mode: isProd ? 'production' : 'development',
+  entry: './src/main.tsx', 
   output: {
     path: buildPath,
-    filename: 'bundle.js',
-    publicPath: '/',
+    filename: 'bundle.js'
   },
-
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: './index.html'
-    })
+      template: './index.html'
+    }),
+    new MiniCssExtractPlugin()
   ],
 
   module: {
