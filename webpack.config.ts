@@ -36,19 +36,21 @@ const getSettingsForStyles = (withModules = false) => {
 };
 
 module.exports = {
-  mode: isProd ? 'production' : 'development',
-  entry: path.join(srcPath, 'main.tsx'), 
+  mode: 'development',
+  entry: path.join(srcPath, 'main.tsx'),
+  target: !isProd ? 'web' : 'browsersList',
   output: {
     path: buildPath,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/',
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html'
-    }),
-    new MiniCssExtractPlugin(),
-    process.env.NODE_ENV === 'development' && new ReactRefreshWebpackPlugin()
-  ].filter(Boolean),
+      template: './index.html',
+      filename: './index.html'
+    })
+  ],
 
   module: {
     rules: [
@@ -57,35 +59,13 @@ module.exports = {
         use: getSettingsForStyles(true)
       },
       {
-        test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/, // Add this line to exclude the node_modules directory
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-              "react-refresh/babel"
-            ],
-            plugins: [
-              '@babel/plugin-proposal-optional-chaining',
-              { "loose": true }
-            ]
-          }
-        }
+        test: /\.s?css$/,
+        exclude: /\.module\.s?css$/,
+        use: getSettingsForStyles()
       },
       {
-        test: /\.(js|jsx|ts|tsx)$/,
-        include: /node_modules/, // Add this line to include the node_modules directory for specific packages
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-react', { runtime: 'automatic' }]
-            ]
-          }
-        }
+        test: /\.[tj]sx?$/,
+        use: 'babel-loader'
       },
       {
         test: /\.(png|svg|jpeg|jpg|gif)$/,
