@@ -1,4 +1,4 @@
-@use '../../styles/index.scss';
+@use './index.scss';
 
 .repos {
     display: flex;
@@ -20,8 +20,8 @@
 .main {
     max-width: 1237px;
     margin: 0 auto;
-    font-family: index.$font;
-    color: index.$text-primary;
+    font-family: var(--font);
+    color: var(--text-primary);
     h1 {
         font-size: 48px;
         font-weight: 700;
@@ -32,7 +32,7 @@
 
     button {
         border: none;
-        background-color: index.$button-primary-text-active;
+        background-color: var(--button-primary-text-active);
         svg {
             stroke: #151411;
         }
@@ -40,28 +40,28 @@
 
     button:hover {
         cursor: pointer;
-        background-color: index.$button-primary-bg-hover;
+        background-color: var(--button-primary-bg-hover);
     }
 
     button:active {
-        background-color: index.$input-border-focus;
+        background-color: var(--input-border-focus);
     }
 
     button:disabled {
         background-color: transparent;
         svg {
-            stroke: index.$input-placeholder;
+            stroke: var(--input-placeholder);
         }
     }
 
     .page-number {
         width: 38px;
         height: 42px;
-        background-color: index.$button-primary-text-active;
+        background-color: var(--button-primary-text-active);
     }
 
     .page-number:disabled {
-        background-color: index.$text-accent;
+        background-color: var(--text-accent);
         color: #000000;
     }
 
@@ -76,13 +76,13 @@
         }
 
         .search__drop:active {
-            border-color: index.$input-border-focus;
+            border-color: var(--input-border-focus);
         }
     }
 
 
     .searchIcon {
-        background-color: index.$text-accent;
+        background-color: var(--text-accent);
         border-radius: 6px;
         padding: 14px 20px;
         max-width: max-content;
@@ -107,12 +107,12 @@
         }
 
         .super-input:focus {
-            outline-color: index.$input-border-focus;;
+            outline-color: var(--input-border-focus);
         }
     }
 
     .multi_drop {
-        border: 1px solid index.$input-border-focus;
+        border: 1px solid var(--input-border-focus);
         border-radius: 6px;
         padding: 14px 12px;
         width: 300px;
@@ -131,13 +131,13 @@
     max-width: 1440px;
     margin: 0 auto;
     padding-top: 40px;
-    font-family: index.$font;
+    font-family: var(--font);
 
     .repo__page-top {
         font-weight: 700;
         font-size: 44px;
         line-height: 1.09091;
-        color: index.$text-primary;
+        color: var(--text-primary);
         display: flex;
         flex-direction: row;
         gap:16px;
@@ -162,7 +162,7 @@
             max-width: max-content;
             font-weight: 700;
             font-size: 16px;
-            color: index.$link-color;
+            color: var(--link-color);
         }
 
         .repo__page-topics {
@@ -173,8 +173,8 @@
                 font-weight: 700;
                 font-size: 12px;
                 text-align: center;
-                color: index.$li-color;
-                background-color: index.$li-background;
+                color: var(--li-color);
+                background-color: var(--li-background);
                 padding: 4px 16px;
                 border-radius: 20px;
             }
@@ -192,7 +192,7 @@
                 font-weight: 600;
                 font-size: 14px;
                 line-height: 1.28571;
-                color: index.$text-secondary;
+                color: var(--text-secondary);
                 max-width: max-content;
             }
         }
@@ -211,7 +211,7 @@
                 font-size: 14px;
             }
             .language-percentage {
-                color: index.$text-secondary;
+                color: var(--text-secondary);
                 font-weight: 400;
                 font-size: 14px;
             }
@@ -228,7 +228,7 @@
                 width: 16px;
                 height: 16px;
                 border-radius: 100%;
-                background-color: index.$text-secondary;
+                background-color: var(--text-secondary);
                 position: absolute;
                 text-align: center;
                 padding: 0 2px;
@@ -261,7 +261,7 @@
         margin: 32px 0;
         pre {
             background-color: #dddddd;
-            color: index.$text-primary;
+            color: var(--text-primary);
         }
     }
     

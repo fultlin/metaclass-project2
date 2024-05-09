@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { marked } from "marked";
 import LanguageList from "./components/LanguageList";
-import 'github-markdown-css';
 import Loader from "./components/loader/Loader";
 import IconBack from "./components/IconBack/IconBack";
 import IconLink from "./components/IconLink/IconLink";

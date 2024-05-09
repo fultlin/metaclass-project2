@@ -1,4 +1,4 @@
-import './styleHeader.scss'
+
 import Logo from './components/logo/Logo'
 import Avatar from './components/ava/Avatar'
 import { Link } from 'react-router-dom'

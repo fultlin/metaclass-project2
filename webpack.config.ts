@@ -13,16 +13,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getSettingsForStyles = (withModules = false) => {
   return [
     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-    !withModules
-      ? 'css-loader'
-      : {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            localIdentName: !isProd ? '[path][name]__[local]' : '[hash:base64]',
-          },
-        },
+    {
+      loader: 'css-loader',
+      options: {
+        modules: withModules ? {
+          localIdentName: isProd ? '[hash:base64]' : '[path][name]__[local]',
+        } : false,
       },
+    },
     {
       loader: 'postcss-loader',
       options: {
@@ -31,7 +29,14 @@ const getSettingsForStyles = (withModules = false) => {
         },
       },
     },
-    'sass-loader',
+    {
+      loader: 'sass-loader',
+      options: {
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, 'src/styles')],
+        },
+      }
+    }
   ];
 };
 
@@ -49,18 +54,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
     })
   ],
 
   module: {
     rules: [
       {
-        test: /\.module\.s?css$/,
-        use: getSettingsForStyles(true)
-      },
-      {
-        test: /\.s?css$/,
-        exclude: /\.module\.s?css$/,
+        test: /\.s?[ac]ss$/i,
         use: getSettingsForStyles()
       },
       {
