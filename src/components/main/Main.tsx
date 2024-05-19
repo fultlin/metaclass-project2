@@ -1,23 +1,22 @@
+import React from 'react';
 import { observer } from 'mobx-react';
+import { Route, Routes } from 'react-router-dom';
 import List from './list/List';
 import RepoPage from './repoPage/RepoPage';
-import { Route, Routes } from 'react-router-dom';
 import repoStore from '../../store/RepoStore/RepoStore';
-import React from 'react';
 
 const Main = observer(() => {
-    const pageNumbers: number[] = [];
-    for (let i = 1; i <= repoStore.totalPages; i++) {
-        pageNumbers.push(i);
-    }
-
     const prevPage = () => {
-        repoStore.setPage(repoStore.page - 1)
-    }
+        if (repoStore.page > 1) {
+            repoStore.setPage(repoStore.page - 1);
+        }
+    };
 
     const nextPage = () => {
-        repoStore.setPage(repoStore.page + 1)
-    }
+        if (repoStore.page < repoStore.totalPages) {
+            repoStore.setPage(repoStore.page + 1);
+        }
+    };
 
     return (
         <Routes>

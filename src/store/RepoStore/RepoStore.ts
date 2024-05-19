@@ -8,20 +8,22 @@ interface Repo {
     };
     id: number;
     description: string;
-
+    stargazers_count: number;
+    updated_at: string;
 }
 
 class RepoStore {
     repos: Repo[] = [];
-    page: number = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1;
-    name: string = localStorage.getItem('name') || 'ktsstudio';
+    page: number = 1;
+    name: string = 'ktsstudio';
     repoPerPage: number = 9;
-    type: string = localStorage.getItem('type') || 'all';
+    type: string = 'all';
 
     constructor() {
         makeAutoObservable(this);
         this.setName = this.setName.bind(this);
-        this.setType = this.setType.bind(this)
+        this.setType = this.setType.bind(this);
+        this.setPage = this.setPage.bind(this);
         this.fetchRepos();
     }
 
@@ -37,18 +39,16 @@ class RepoStore {
 
     setName(newName: string): void {
         this.name = newName;
-        localStorage.setItem('name', newName);
         this.fetchRepos();
     }
 
     setPage(newPage: number): void {
         this.page = newPage;
-        localStorage.setItem('page', newPage.toString());
+        this.fetchRepos();
     }
 
     setType(newType: string): void {
         this.type = newType;
-        localStorage.setItem('type', newType);
         this.fetchRepos();
     }
 
@@ -63,6 +63,6 @@ class RepoStore {
     }
 }
 
-const repoStore = new RepoStore()
+const repoStore = new RepoStore();
 
 export default repoStore;
