@@ -5,7 +5,7 @@ import List from './list/List';
 import RepoPage from './repoPage/RepoPage';
 import repoStore from '../../store/RepoStore/RepoStore';
 
-const Main = observer(() => {
+const Main = React.memo(observer(() => {
     const prevPage = () => {
         if (repoStore.page > 1) {
             repoStore.setPage(repoStore.page - 1);
@@ -39,6 +39,6 @@ const Main = observer(() => {
             <Route path="/:name" element={<RepoPage nameAcc={repoStore.name} />} />
         </Routes>
     );
-});
+}));
 
 export default Main;

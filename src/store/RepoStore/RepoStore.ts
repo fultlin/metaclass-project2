@@ -24,18 +24,22 @@ class RepoStore {
         this.setName = this.setName.bind(this);
         this.setType = this.setType.bind(this);
         this.setPage = this.setPage.bind(this);
-        this.fetchRepos();
+        this.fetchRepos = this.fetchRepos.bind(this);
+        this.resetStore = this.resetStore.bind(this);
     }
 
     async fetchRepos(): Promise<void> {
-        await axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
-            .then(response => {
-                this.repos = response.data;
-                this.repos = this.repos.reverse()
-            })
-            .catch(error => {
-                console.error("Не удалось получить репозитории", error);
-            });
+        if (this.name) {
+            await axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
+                .then(response => {
+                    this.repos = response.data.reverse();
+                })
+                .catch(error => {
+                    console.error("Не удалось получить репозитории", error);
+                });
+        } else {
+            this.repos = [];
+        }
     }
 
     setName(newName: string): void {
@@ -51,6 +55,13 @@ class RepoStore {
     setType(newType: string): void {
         this.type = newType;
         this.fetchRepos();
+    }
+
+    resetStore(): void {
+        this.repos = [];
+        this.page = 1;
+        this.name = '';
+        this.type = 'all';
     }
 
     get currentRepos(): Repo[] {

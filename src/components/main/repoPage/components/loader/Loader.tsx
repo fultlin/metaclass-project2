@@ -1,6 +1,6 @@
 import React from "react"
 
-const Loader = () => {
+const Loader = React.memo(() => {
     return (
         <div>
             <svg width="200" height="200" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="loader">
@@ -8,6 +8,6 @@ const Loader = () => {
             </svg>
         </div>
     )
-}
+})
 
 export default Loader

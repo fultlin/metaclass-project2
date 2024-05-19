@@ -1,6 +1,6 @@
 import React from "react"
 
-const IconFork = () => {
+const IconFork = React.memo(() => {
     return (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 3.00536C14.0019 2.50413 13.8151 2.02059 13.4768 1.65056C13.1384 1.28041 12.6731 1.05097 12.1732 1.0075C11.6734 0.964132 11.1754 1.10996 10.7782 
@@ -21,6 +21,6 @@ const IconFork = () => {
             2.48639 13 2.74048 13 3.00536C13 3.27025 12.8946 3.52435 12.7071 3.71175C12.5195 3.89905 12.2652 4.0043 12 4.0043Z" fill="#AFADB5" />
         </svg>
     )
-}
+})
 
 export default IconFork

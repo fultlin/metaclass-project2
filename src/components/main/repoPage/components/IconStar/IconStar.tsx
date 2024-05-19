@@ -1,6 +1,6 @@
 import React from "react"
 
-const IconStar = () => {
+const IconStar = React.memo(() => {
     return (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M7.99992 0.25C8.13993 0.24991 8.27718 0.289014 8.39612 0.362887C8.51506 0.43676 8.61094 0.542452 8.67292 
@@ -17,6 +17,6 @@ const IconStar = () => {
             6.361L9.94892 5.911C9.82874 5.89344 9.71462 5.84695 9.61638 5.77553C9.51813 5.70411 9.4387 5.6099 9.38492 5.501L7.99992 2.694V2.695Z" fill="#AFADB5" />
         </svg>
     )
-}
+})
 
 export default IconStar

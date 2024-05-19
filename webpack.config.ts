@@ -53,10 +53,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      filename: './index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles.css',
+      filename: '[name]-[hash].css',
     })
   ],
 
@@ -79,7 +78,12 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.js', '.jsx', '.ts'],
     alias: {
-      components: path.join(srcPath, 'components')
+      components: path.join(srcPath, 'components'),
+      assets: path.join(srcPath, 'assets'),
+      fonts: path.join(srcPath, 'fonts'),
+      store: path.join(srcPath, 'store'),
+      styles: path.join(srcPath, 'styles'),
+      utils: path.join(srcPath, 'utils'),
     }
   },
   devServer: {

@@ -1,6 +1,6 @@
 import React from "react"
 
-const IconWatch = () => {
+const IconWatch = React.memo(() => {
     return (
         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 0C4.17033 0 1.58194 1.75154 0.0757531 4.68526C-0.025251 4.882 -0.025251 5.11772 0.0757531 5.31444C1.58197 8.24837 4.17053 10 7 10C9.82947 10 12.4181 
@@ -9,6 +9,6 @@ const IconWatch = () => {
             <ellipse cx="6.85914" cy="4.97725" rx="1.55446" ry="1.60665" fill="#AFADB5" />
         </svg>
     )
-}
+})
 
 export default IconWatch

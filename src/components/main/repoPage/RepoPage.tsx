@@ -10,7 +10,7 @@ import IconStar from './components/IconStar/IconStar';
 import IconWatch from "./components/IconWatch/IconWatch";
 import IconFork from "./components/IconFork/IconFork";
 
-const RepoPage = observer(({ nameAcc }: any) => {
+const RepoPage = React.memo(observer(({ nameAcc }: any) => {
   const { name } = useParams<{ name: string }>();
   const store = useLocalStore(() => new RepoStore());
 
@@ -91,6 +91,6 @@ const RepoPage = observer(({ nameAcc }: any) => {
       <div className="markdown-body repo__page-readme" dangerouslySetInnerHTML={{ __html: store.readme }} />
     </div>
   );
-});
+}));
 
 export default RepoPage;

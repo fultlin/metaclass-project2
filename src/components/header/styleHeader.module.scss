@@ -1,4 +1,4 @@
-@import'../../styles/index.scss' ;
+@use'../../styles/index.scss' ;
 
 header {
     padding: 20px 0px;
@@ -10,13 +10,13 @@ header {
     justify-content: space-between;
 }
 
-.logo-title {
+.logo__title {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 24px;
     max-width: max-content;
-    .logo-title--text {
+    .logo__title--text {
         font-family: var(--font);
         font-size: 24px;
         font-weight: 700;

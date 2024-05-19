@@ -7,7 +7,7 @@ import SearchIcon from "./components/searchicon/SearchIcon";
 import TypeDropDown from "./components/typeDropDown/TypeDropDown";
 import repoStore from "../../../store/RepoStore/RepoStore";
 
-const List = observer(() => {
+const List = React.memo(observer(() => {
     const { currentRepos, totalPages, setName, setPage, setType } = repoStore;
     const location = useLocation();
     const navigate = useNavigate();
@@ -80,7 +80,7 @@ const List = observer(() => {
                             </Link>
                         </li>
                     )) :
-                    <div>Start</div>
+                    <div>There you will see repos</div>
                 }
                 </ul>
             </div>
@@ -108,6 +108,6 @@ const List = observer(() => {
             </div>
         </div>
     );
-});
+}));
 
 export default List;
