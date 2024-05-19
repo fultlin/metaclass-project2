@@ -30,7 +30,7 @@ const RepoPage = React.memo(observer(({ nameAcc }: any) => {
   return (
     <div className="repo__page">
       <div className="repo__page-top">
-        <Link to={'/'} className="page-number">
+        <Link to={'/'} className="repo__page-back">
           <IconBack />
         </Link>
         <img src={`${store.ava}`} alt="ava" className="repo__page-ava" />

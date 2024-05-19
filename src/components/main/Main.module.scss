@@ -70,15 +70,18 @@
         width: 300px;
         margin-bottom: 20px;
         padding: 16px 12px;
-        border: none;
-        outline: 1px var(--li-color);
+        border: 1px solid rgba(161, 161, 161, 0.62);
         .super-input {
-            width: 300px;
-            border: 1px solid var(--li-color);
+            width: 500px;
+            border: 1px solid rgba(161, 161, 161, 0.62);
         }
 
-        .search__drop:active {
+        &:active {
             border-color: var(--input-border-focus);
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 
@@ -107,10 +110,15 @@
             width: 100%;
             border: none;
             padding: 18px 12px;
+            outline: 1px solid rgba(161, 161, 161, 0.62);;
         }
 
         .super-input:focus {
             outline-color: var(--input-border-focus);
+        }
+
+        .super-input:hover {
+            cursor: pointer;
         }
     }
 
@@ -133,8 +141,12 @@
 .repo__page {
     max-width: 1440px;
     margin: 0 auto;
-    padding-top: 40px;
+    padding: 20px;
     font-family: var(--font);
+
+    .repo__page-back:hover {
+        opacity: 0.5;
+    }
 
     .repo__page-top {
         font-weight: 700;
@@ -282,6 +294,10 @@
     to { transform: rotate(360deg); }
 }
 
-
+@media (max-width: 840px) {
+    .repos {
+        justify-content: center;
+    }
+}
 
 

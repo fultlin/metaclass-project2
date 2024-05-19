@@ -35,7 +35,7 @@ class RepoStore {
                     this.repos = response.data.reverse();
                 })
                 .catch(error => {
-                    console.error("Не удалось получить репозитории", error);
+                    this.repos = [];
                 });
         } else {
             this.repos = [];
