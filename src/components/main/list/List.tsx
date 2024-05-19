@@ -72,11 +72,16 @@ const List = observer(() => {
             </div>
             <div>
                 <ul className="repos">
-                    {currentRepos.map(repo => (
-                        <Link key={repo.id} to={`/repo/${repo.name}`}>
-                            <Card id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />
-                        </Link>
-                    ))}
+                {currentRepos.length > 0 ? 
+                    currentRepos.map(repo => (
+                        <li key={repo.id}>
+                            <Link to={`/repo/${repo.name}`}>
+                                <Card id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />
+                            </Link>
+                        </li>
+                    )) :
+                    <div>Start</div>
+                }
                 </ul>
             </div>
             <div className="repos__navigation">

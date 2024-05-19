@@ -1,0 +1,14 @@
+@import url('./styles/reset.scss');
+@import url('./styles/fonts.scss');
+@import url('./components/header/styleHeader.module.scss');
+@import url('./components/main/components/card/Card.module.scss');
+@import url('./components/main/Main.module.scss');
+@import url('./styles/github-markdown.css');
+@import url('./styles/index.scss');
+
+
+.wrapper {
+    max-width: 1440px;
+    padding: 20px;
+    margin: 0 auto;
+}

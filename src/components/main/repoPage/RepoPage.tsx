@@ -30,7 +30,7 @@ const RepoPage = observer(({ nameAcc }: any) => {
   return (
     <div className="repo__page">
       <div className="repo__page-top">
-        <Link to={'/'}>
+        <Link to={'/'} className="page-number">
           <IconBack />
         </Link>
         <img src={`${store.ava}`} alt="ava" className="repo__page-ava" />

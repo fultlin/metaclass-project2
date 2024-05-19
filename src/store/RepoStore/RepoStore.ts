@@ -15,7 +15,7 @@ interface Repo {
 class RepoStore {
     repos: Repo[] = [];
     page: number = 1;
-    name: string = 'ktsstudio';
+    name: string = '';
     repoPerPage: number = 9;
     type: string = 'all';
 
@@ -31,6 +31,7 @@ class RepoStore {
         await axios.get<Repo[]>(`https://api.github.com/orgs/${this.name}/repos?type=${this.type}`)
             .then(response => {
                 this.repos = response.data;
+                this.repos = this.repos.reverse()
             })
             .catch(error => {
                 console.error("Не удалось получить репозитории", error);

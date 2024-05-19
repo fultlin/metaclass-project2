@@ -1,10 +1,12 @@
-@use './index.scss';
+@use 'styles/index.scss';
 
 .repos {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: max-content;
 }
 
 .repos__navigation {
@@ -20,6 +22,7 @@
 .main {
     max-width: 1237px;
     margin: 0 auto;
+    padding: 20px;
     font-family: var(--font);
     color: var(--text-primary);
     h1 {
@@ -40,7 +43,7 @@
 
     button:hover {
         cursor: pointer;
-        background-color: var(--button-primary-bg-hover);
+        opacity: 0.5;
     }
 
     button:active {
@@ -49,9 +52,7 @@
 
     button:disabled {
         background-color: transparent;
-        svg {
-            stroke: var(--input-placeholder);
-        }
+        opacity: 0.5;
     }
 
     .page-number {
@@ -62,7 +63,7 @@
 
     .page-number:disabled {
         background-color: var(--text-accent);
-        color: #000000;
+        color: whitesmoke;
     }
 
     .search__drop {
@@ -70,9 +71,10 @@
         margin-bottom: 20px;
         padding: 16px 12px;
         border: none;
+        outline: 1px var(--li-color);
         .super-input {
             width: 300px;
-            border: none;
+            border: 1px solid var(--li-color);
         }
 
         .search__drop:active {
@@ -101,7 +103,8 @@
 
         .super-input {
             height: 55px;
-            width: 1100px;
+            max-width: 1100px;
+            width: 100%;
             border: none;
             padding: 18px 12px;
         }
@@ -278,5 +281,7 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+
 
 
