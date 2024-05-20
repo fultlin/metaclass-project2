@@ -113,6 +113,11 @@
             outline: 1px solid rgba(161, 161, 161, 0.62);;
         }
 
+        .super-input-block {
+            max-width: 500px;
+            width: 100%;
+        }
+
         .super-input:focus {
             outline-color: var(--input-border-focus);
         }
@@ -287,6 +292,14 @@
     top: 400px;
     left: 950px;
     animation: spin 1s linear infinite;
+}
+
+.start-block {
+    max-width: 1000px;
+    width: 100%;
+    padding: 200px;
+    margin-bottom: 50px;
+    font-size: 24px;
 }
 
 @keyframes spin {

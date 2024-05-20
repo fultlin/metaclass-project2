@@ -70,7 +70,7 @@ const List = React.memo(observer(() => {
                     <SearchIcon onSearch={handleSearchClick} />
                 </div>
             </div>
-            <div>
+
                 <ul className="repos">
                 {currentRepos.length > 0 ? 
                     currentRepos.map(repo => (
@@ -80,10 +80,10 @@ const List = React.memo(observer(() => {
                             </Link>
                         </li>
                     )) :
-                    <div>There you will see repos</div>
+                    <div className="start-block">There you will see repos</div>
                 }
                 </ul>
-            </div>
+
             <div className="repos__navigation">
                 <button onClick={onClickPrev} disabled={repoStore.page === 1} className="button">
                     <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
