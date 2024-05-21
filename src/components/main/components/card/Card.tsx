@@ -25,8 +25,8 @@ const Card = React.memo((data: {
     const monthIndex = dateObj.getUTCMonth();
     const formattedDate = `Updated ${dateObj.getUTCDate()} ${months[monthIndex]}`;
     return (
-        <Link to={`/${data.name}`}>
-            <li key={data.id} className="card">
+        <li key={data.id} className="card">
+            <Link to={`/${data.name}`}>
                 <img src={data.owner.avatar_url} alt="Картинка репозитория" />
                 <div className="card__raiting-date">
                     <div className="raiting">
@@ -39,8 +39,8 @@ const Card = React.memo((data: {
                     <h3 className="card__title">{data.name}</h3>
                     <span className="card__description">{data.description}</span>
                 </div>
-            </li>
-        </Link>
+            </Link>
+        </li>
         
     )
 })

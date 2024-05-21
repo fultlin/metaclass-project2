@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState, useEffect } from "react";
+import React, { MouseEventHandler, useState, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react";
 import Card from "../components/card/Card";
@@ -38,41 +38,41 @@ const List: React.FC<ListProps> = observer(() => {
         if (typeQuery) setType(typeQuery);
     }, [location.search]);
 
-    const handleInputChange = (value: string) => {
+    const handleInputChange = useCallback((value: string) => {
         setInputValue(value);
-    };
+    }, []);
 
-    const handleSearchClick = () => {
+    const handleSearchClick = useCallback(() => {
         const query = new URLSearchParams(location.search);
         query.set('name', inputValue);
         query.set('page', '1'); 
         navigate({ search: query.toString() });
         setName(inputValue);
-    };
+    }, [inputValue, location.search, navigate, setName]);
 
-    const handleNewType = (value: string) => {
+    const handleNewType = useCallback((value: string) => {
         const query = new URLSearchParams(location.search);
         query.set('type', value);
         query.set('page', '1'); 
         navigate({ search: query.toString() });
         setType(value);
-    };
+    }, [location.search, navigate, setType]);
 
-    const onClickPrev = () => {
+    const onClickPrev = useCallback(() => {
         const newPage = repoStore.page - 1;
         const query = new URLSearchParams(location.search);
         query.set('page', newPage.toString());
         navigate({ search: query.toString() });
         setPage(newPage);
-    };
+    }, [location.search, navigate, setPage]);
 
-    const onClickNext = () => {
+    const onClickNext = useCallback(() => {
         const newPage = repoStore.page + 1;
         const query = new URLSearchParams(location.search);
         query.set('page', newPage.toString());
         navigate({ search: query.toString() });
         setPage(newPage);
-    };
+    }, [location.search, navigate, setPage]);
 
     return (
         <div className="main">
@@ -88,9 +88,7 @@ const List: React.FC<ListProps> = observer(() => {
                 <ul className="repos">
                 {currentRepos.length > 0 ? 
                     currentRepos.map(repo => (
-                            <Link to={`/repo/${repo.name}`} key={repo.id}>
-                                <Card id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />
-                            </Link>
+                        <Card key={repo.id} id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />    
                     )) :
                     <div className="start-block">There you will see repos</div>
                 }

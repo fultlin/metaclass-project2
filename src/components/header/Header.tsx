@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from './components/logo/Logo';
 import Avatar from './components/ava/Avatar';
@@ -9,10 +9,10 @@ import './styleHeader.module.scss'
 const Header = React.memo(() => {
     const navigate = useNavigate();
 
-    const handleLogoClick = () => {
+    const handleLogoClick = useCallback(() => {
         repoStore.resetStore();
         navigate('/');
-    };
+    }, [navigate, repoStore]);
 
     return (
         <header>

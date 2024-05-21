@@ -8,17 +8,17 @@ import repoStore from '../../store/RepoStore/RepoStore';
 import './Main.module.scss'
 
 const Main = observer(() => {
-    const prevPage = () => {
+    const prevPage = React.useCallback(() => {
         if (repoStore.page > 1) {
             repoStore.setPage(repoStore.page - 1);
         }
-    };
+    }, [repoStore]);
 
-    const nextPage = () => {
+    const nextPage = React.useCallback(() => {
         if (repoStore.page < repoStore.totalPages) {
             repoStore.setPage(repoStore.page + 1);
         }
-    };
+    }, [repoStore]);
 
     return (
         <Routes>
