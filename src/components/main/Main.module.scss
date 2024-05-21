@@ -1,4 +1,4 @@
-@use 'styles/index.scss' as index;
+@import '../../styles/index.scss';
 
 .repos {
     display: flex;
@@ -290,7 +290,7 @@
 .loader {
     position: absolute;
     top: 400px;
-    left: 950px;
+    left: 750px;
     animation: spin 1s linear infinite;
 }
 

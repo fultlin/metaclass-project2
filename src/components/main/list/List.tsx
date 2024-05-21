@@ -7,7 +7,21 @@ import SearchIcon from "./components/searchicon/SearchIcon";
 import TypeDropDown from "./components/typeDropDown/TypeDropDown";
 import repoStore from "../../../store/RepoStore/RepoStore";
 
-const List = React.memo(observer(() => {
+interface ListProps {
+    currentRepos: any;
+    onClickPrev: () => void;
+    onClickNext: () => void;
+    indexOfFirstRepo: number;
+    indexOfLastRepo: number;
+    result: any;
+    page: number;
+    totalPages: number;
+    setPage: (newPage: number) => void;
+    setName: (newName: string) => void;
+    setType: (newType: string) => void;
+}
+
+const List: React.FC<ListProps> = React.memo(observer(() => {
     const { currentRepos, totalPages, setName, setPage, setType } = repoStore;
     const location = useLocation();
     const navigate = useNavigate();
@@ -74,11 +88,9 @@ const List = React.memo(observer(() => {
                 <ul className="repos">
                 {currentRepos.length > 0 ? 
                     currentRepos.map(repo => (
-                        <li key={repo.id}>
-                            <Link to={`/repo/${repo.name}`}>
+                            <Link to={`/repo/${repo.name}`} key={repo.id}>
                                 <Card id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />
                             </Link>
-                        </li>
                     )) :
                     <div className="start-block">There you will see repos</div>
                 }
