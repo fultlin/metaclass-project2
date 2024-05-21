@@ -21,7 +21,7 @@ interface ListProps {
     setType: (newType: string) => void;
 }
 
-const List: React.FC<ListProps> = React.memo(observer(() => {
+const List: React.FC<ListProps> = observer(() => {
     const { currentRepos, totalPages, setName, setPage, setType } = repoStore;
     const location = useLocation();
     const navigate = useNavigate();
@@ -97,11 +97,13 @@ const List: React.FC<ListProps> = React.memo(observer(() => {
                 </ul>
 
             <div className="repos__navigation">
-                <button onClick={onClickPrev} disabled={repoStore.page === 1} className="button">
-                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.62 26.5599L11.9267 17.8666C10.9 16.8399 10.9 15.1599 11.9267 14.1333L20.62 5.43994" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                {currentRepos.length > 0 ?
+                    <button onClick={onClickPrev} disabled={repoStore.page === 1} className="button">
+                        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.62 26.5599L11.9267 17.8666C10.9 16.8399 10.9 15.1599 11.9267 14.1333L20.62 5.43994" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                : ''}
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map(number => (
                     <button key={number} onClick={() => {
                         const query = new URLSearchParams(location.search);
@@ -112,14 +114,18 @@ const List: React.FC<ListProps> = React.memo(observer(() => {
                         {number}
                     </button>
                 ))}
-                <button onClick={onClickNext} disabled={repoStore.page === totalPages} className="button">
-                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.38 26.5599L21.0733 17.8666C22.1 16.8399 22.1 15.1599 21.0733 14.1333L12.38 5.43994" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                {currentRepos.length > 0 ?
+                    <button onClick={onClickNext} disabled={repoStore.page === totalPages} className="button">
+                        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.38 26.5599L21.0733 17.8666C22.1 16.8399 22.1 15.1599 21.0733 14.1333L12.38 5.43994" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                : ''
+                }
+                
             </div>
         </div>
     );
-}));
+});
 
 export default List;

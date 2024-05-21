@@ -4,7 +4,9 @@ import Logo from './components/logo/Logo';
 import Avatar from './components/ava/Avatar';
 import repoStore from '../../store/RepoStore/RepoStore';
 
-const Header = () => {
+import './styleHeader.module.scss'
+
+const Header = React.memo(() => {
     const navigate = useNavigate();
 
     const handleLogoClick = () => {
@@ -23,6 +25,6 @@ const Header = () => {
             </div>
         </header>
     );
-};
+});
 
 export default Header;

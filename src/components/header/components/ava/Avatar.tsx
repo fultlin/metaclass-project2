@@ -1,6 +1,6 @@
 import React from "react"
 
-const Avatar = () => {
+const Avatar = React.memo(() => {
     return (
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <circle cx="17" cy="17" r="16" fill="url(#pattern0_508_300)" stroke="#ECEBEB" />
@@ -12,6 +12,6 @@ const Avatar = () => {
         </defs>
         </svg>
     )
-}
+})
 
 export default Avatar

@@ -1,4 +1,4 @@
-@use '../../../../styles/index.scss';
+@import '../../../../styles/index.scss';
 
 .card {
     max-width: 360px;
@@ -20,14 +20,14 @@
     }
 
     .card__title {
-        font-family: var(--font);
+        font-family: $font;
         font-size: 20px;
         font-weight: 700;
-        color: var(--text-primary);
+        color: $text-primary;
     }
 
     .card__description {
-        color: var(--text-secondary);
+        color: $text-secondary;
         font-size: 16px;
         display: block;
         margin-top: 8px;
@@ -39,7 +39,7 @@
     }
 
     .card__raiting-date {
-        color: var(--text-secondary);
+        color: $text-secondary;
         font-size: 14px;
         font-weight: 500;
         margin-top: 24px;

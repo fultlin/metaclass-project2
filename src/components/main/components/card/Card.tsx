@@ -4,6 +4,8 @@ import { Key } from "react"
 import { Link } from "react-router-dom";
 import Raiting from "./components/Raiting";
 
+import './Card.module.scss'
+
 
 const Card = React.memo((data: {
     description: string;

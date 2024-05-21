@@ -23,8 +23,8 @@
     max-width: 1237px;
     margin: 0 auto;
     padding: 20px;
-    font-family: var(--font);
-    color: var(--text-primary);
+    font-family: $font;
+    color: $text-primary;
     h1 {
         font-size: 48px;
         font-weight: 700;
@@ -35,7 +35,7 @@
 
     button {
         border: none;
-        background-color: var(--button-primary-text-active);
+        background-color: $button-primary-text-active;
         svg {
             stroke: #151411;
         }
@@ -47,7 +47,7 @@
     }
 
     button:active {
-        background-color: var(--input-border-focus);
+        background-color: $input-border-focus;
     }
 
     button:disabled {
@@ -58,11 +58,11 @@
     .page-number {
         width: 38px;
         height: 42px;
-        background-color: var(--button-primary-text-active);
+        background-color: $button-primary-text-active;
     }
 
     .page-number:disabled {
-        background-color: var(--text-accent);
+        background-color: $text-accent;
         color: whitesmoke;
     }
 
@@ -77,7 +77,7 @@
         }
 
         &:active {
-            border-color: var(--input-border-focus);
+            border-color: $input-border-focus;
         }
 
         &:hover {
@@ -87,7 +87,7 @@
 
 
     .searchIcon {
-        background-color: var(--text-accent);
+        background-color: $text-accent;
         border-radius: 6px;
         padding: 14px 20px;
         max-width: max-content;
@@ -119,7 +119,7 @@
         }
 
         .super-input:focus {
-            outline-color: var(--input-border-focus);
+            outline-color: $input-border-focus;
         }
 
         .super-input:hover {
@@ -128,7 +128,7 @@
     }
 
     .multi_drop {
-        border: 1px solid var(--input-border-focus);
+        border: 1px solid $input-border-focus;
         border-radius: 6px;
         padding: 14px 12px;
         width: 300px;
@@ -147,7 +147,7 @@
     max-width: 1440px;
     margin: 0 auto;
     padding: 20px;
-    font-family: var(--font);
+    font-family: $font;
 
     .repo__page-back:hover {
         opacity: 0.5;
@@ -157,7 +157,7 @@
         font-weight: 700;
         font-size: 44px;
         line-height: 1.09091;
-        color: var(--text-primary);
+        color: $text-primary;
         display: flex;
         flex-direction: row;
         gap:16px;
@@ -182,7 +182,7 @@
             max-width: max-content;
             font-weight: 700;
             font-size: 16px;
-            color: var(--link-color);
+            color: $link-color;
         }
 
         .repo__page-topics {
@@ -193,8 +193,8 @@
                 font-weight: 700;
                 font-size: 12px;
                 text-align: center;
-                color: var(--li-color);
-                background-color: var(--li-background);
+                color: $li-color;
+                background-color: $li-background;
                 padding: 4px 16px;
                 border-radius: 20px;
             }
@@ -212,7 +212,7 @@
                 font-weight: 600;
                 font-size: 14px;
                 line-height: 1.28571;
-                color: var(--text-secondary);
+                color: $text-secondary;
                 max-width: max-content;
             }
         }
@@ -231,7 +231,7 @@
                 font-size: 14px;
             }
             .language-percentage {
-                color: var(--text-secondary);
+                color: $text-secondary;
                 font-weight: 400;
                 font-size: 14px;
             }
@@ -248,7 +248,7 @@
                 width: 16px;
                 height: 16px;
                 border-radius: 100%;
-                background-color: var(--text-secondary);
+                background-color: $text-secondary;
                 position: absolute;
                 text-align: center;
                 padding: 0 2px;
@@ -281,7 +281,7 @@
         margin: 32px 0;
         pre {
             background-color: #dddddd;
-            color: var(--text-primary);
+            color: $text-primary;
         }
     }
     

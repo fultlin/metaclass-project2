@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logo = () => {
+const Logo = React.memo(() => {
     return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_508_298)">
@@ -13,6 +13,6 @@ const Logo = () => {
         </defs>
         </svg>
     )
-}
+})
 
 export default Logo;

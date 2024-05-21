@@ -17,9 +17,9 @@ header {
     gap: 24px;
     max-width: max-content;
     .logo__title--text {
-        font-family: var(--font);
+        font-family: $font;
         font-size: 24px;
         font-weight: 700;
-        color: $color;
+        color: $text-primary;
     }
 }
