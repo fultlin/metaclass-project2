@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { observer, useLocalStore } from "mobx-react-lite";
+import { observer, useLocalObservable, useLocalStore } from "mobx-react-lite";
 import RepoStore from "../../../store/RepoStore/RepoPage";
 import LanguageList from "./components/LanguageList";
 import Loader from "./components/loader/Loader";
@@ -12,7 +12,7 @@ import IconFork from "./components/IconFork/IconFork";
 
 const RepoPage = observer(({ nameAcc }: any) => {
   const { name } = useParams<{ name: string }>();
-  const store = useLocalStore(() => new RepoStore());
+  const store = useLocalObservable(() => new RepoStore());
 
   useEffect(() => {
     if (name) {

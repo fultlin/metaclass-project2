@@ -9,7 +9,9 @@ import './Card.module.scss'
 
 const Card = React.memo((data: {
     description: string;
-    name: string; id: Key | null | undefined; owner: { avatar_url: string | undefined } ;
+    name: string; id: Key | null | undefined; owner: {
+        [x: string]: any; avatar_url: string | undefined 
+} ;
     stargazers_count: number;
     updated_at: string;
 }) => {
@@ -24,8 +26,37 @@ const Card = React.memo((data: {
 
     const monthIndex = dateObj.getUTCMonth();
     const formattedDate = `Updated ${dateObj.getUTCDate()} ${months[monthIndex]}`;
+
+    const addViewed = () => {
+        let viewedRepos = JSON.parse(localStorage.getItem('viewedRepos') || '[]');
+      
+        const info = {
+          ava: data.owner.avatar_url,
+          name: data.name,
+        };
+      
+        const isDuplicate = viewedRepos.some((repo: string) => {
+          const parsedRepo = JSON.parse(repo);
+          return (
+            parsedRepo.ava === info.ava &&
+            parsedRepo.name === info.name
+          );
+        });
+      
+        if (!isDuplicate) {
+          viewedRepos.unshift(JSON.stringify(info));
+      
+          if (viewedRepos.length > 5) {
+            viewedRepos = viewedRepos.slice(0, 5);
+          }
+      
+          localStorage.setItem('viewedRepos', JSON.stringify(viewedRepos));
+        }
+      };
+
+
     return (
-        <li key={data.id} className="card">
+        <li key={data.id} className="card" onClick={addViewed}>
             <Link to={`/${data.name}`}>
                 <img src={data.owner.avatar_url} alt="Картинка репозитория" />
                 <div className="card__raiting-date">

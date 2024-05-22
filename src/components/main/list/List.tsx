@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react";
 import Card from "../components/card/Card";
@@ -26,6 +26,8 @@ const List: React.FC<ListProps> = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
+    const [viewedRepos, setViewedRepos] = useState<any[]>([]);
+    const [showViewedRepos, setShowViewedRepos] = useState(false);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
@@ -74,6 +76,14 @@ const List: React.FC<ListProps> = observer(() => {
         setPage(newPage);
     }, [location.search, navigate, setPage]);
 
+    const onClickView = useCallback(() => {
+        const storedRepos = JSON.parse(localStorage.getItem('viewedRepos') || '[]');
+        const parsedRepos = storedRepos.map((repo: string) => JSON.parse(repo));
+        console.log(storedRepos[0].name)
+        setViewedRepos(parsedRepos);
+        setShowViewedRepos(true);
+    }, []);
+
     return (
         <div className="main">
             <h1>List of organization repositories</h1>
@@ -81,18 +91,34 @@ const List: React.FC<ListProps> = observer(() => {
                 <TypeDropDown onChange={handleNewType} />
                 <div className="inputSearchBlock">
                     <Input value={inputValue} onChange={handleInputChange} className="search__input--input" id="inputSearch"></Input>
+                    <div onClick={onClickView}>
+                        <h2>Last repos</h2>
+                        {showViewedRepos && (
+                            <ul className="viewed-repos" style={{ marginLeft: '10px' }}>
+                                {viewedRepos.length > 0 ? (
+                                    viewedRepos.map(rep => (
+                                        <li key={rep.name}>
+                                            <Link to={`/${rep.name}`}>{rep.name}</Link>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li>No viewed repos</li>
+                                )}
+                            </ul>
+                        )}
+                    </div>
                     <SearchIcon onSearch={handleSearchClick} />
                 </div>
             </div>
 
-                <ul className="repos">
+            <ul className="repos">
                 {currentRepos.length > 0 ? 
                     currentRepos.map(repo => (
                         <Card key={repo.id} id={repo.id} owner={repo.owner} name={repo.name} description={repo.description} stargazers_count={repo.stargazers_count} updated_at={repo.updated_at} />    
                     )) :
                     <div className="start-block">There you will see repos</div>
                 }
-                </ul>
+            </ul>
 
             <div className="repos__navigation">
                 {currentRepos.length > 0 ?
