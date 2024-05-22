@@ -6,6 +6,7 @@ import Input from "./components/input/Input";
 import SearchIcon from "./components/searchicon/SearchIcon";
 import TypeDropDown from "./components/typeDropDown/TypeDropDown";
 import repoStore from "../../../store/RepoStore/RepoStore";
+import { log } from "console";
 
 interface ListProps {
     currentRepos: any;
@@ -98,7 +99,7 @@ const List: React.FC<ListProps> = observer(() => {
                                 {viewedRepos.length > 0 ? (
                                     viewedRepos.map(rep => (
                                         <li key={rep.name}>
-                                            <Link to={`/${rep.name}`}>{rep.name}</Link>
+                                            <Link to={`/${rep.owner}/${rep.name}`}>{rep.name}</Link>
                                         </li>
                                     ))
                                 ) : (

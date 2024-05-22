@@ -38,7 +38,7 @@ const Main = observer(() => {
                     setType={repoStore.setType}
                 />}
             />
-            <Route path="/:name" element={<RepoPage nameAcc={repoStore.name} />} />
+            <Route path="/:nameAcc/:name" element={<RepoPage />} />
         </Routes>
     );
 });

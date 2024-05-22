@@ -29,17 +29,19 @@ const Card = React.memo((data: {
 
     const addViewed = () => {
         let viewedRepos = JSON.parse(localStorage.getItem('viewedRepos') || '[]');
-      
+
         const info = {
           ava: data.owner.avatar_url,
           name: data.name,
+          owner: data.owner.login,
         };
       
         const isDuplicate = viewedRepos.some((repo: string) => {
           const parsedRepo = JSON.parse(repo);
           return (
             parsedRepo.ava === info.ava &&
-            parsedRepo.name === info.name
+            parsedRepo.name === info.name &&
+            parsedRepo.owner === info.owner
           );
         });
       
@@ -57,7 +59,7 @@ const Card = React.memo((data: {
 
     return (
         <li key={data.id} className="card" onClick={addViewed}>
-            <Link to={`/${data.name}`}>
+            <Link to={`/${data.owner.login}/${data.name}`}>
                 <img src={data.owner.avatar_url} alt="Картинка репозитория" />
                 <div className="card__raiting-date">
                     <div className="raiting">

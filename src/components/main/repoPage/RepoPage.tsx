@@ -10,8 +10,9 @@ import IconStar from './components/IconStar/IconStar';
 import IconWatch from "./components/IconWatch/IconWatch";
 import IconFork from "./components/IconFork/IconFork";
 
-const RepoPage = observer(({ nameAcc }: any) => {
+const RepoPage = observer(() => {
   const { name } = useParams<{ name: string }>();
+  const { nameAcc } = useParams<{ nameAcc: string | any}>();
   const store = useLocalObservable(() => new RepoStore());
 
   useEffect(() => {

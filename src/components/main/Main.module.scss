@@ -288,9 +288,9 @@
 }
 
 .loader {
-    position: absolute;
+    position: relative;
     top: 400px;
-    left: 750px;
+    left: 45%;
     animation: spin 1s linear infinite;
 }
 
