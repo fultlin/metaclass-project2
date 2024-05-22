@@ -80,10 +80,10 @@ const List: React.FC<ListProps> = observer(() => {
     const onClickView = useCallback(() => {
         const storedRepos = JSON.parse(localStorage.getItem('viewedRepos') || '[]');
         const parsedRepos = storedRepos.map((repo: string) => JSON.parse(repo));
-        console.log(storedRepos[0].name)
         setViewedRepos(parsedRepos);
         setShowViewedRepos(true);
     }, []);
+
 
     return (
         <div className="main">
@@ -92,13 +92,14 @@ const List: React.FC<ListProps> = observer(() => {
                 <TypeDropDown onChange={handleNewType} />
                 <div className="inputSearchBlock">
                     <Input value={inputValue} onChange={handleInputChange} className="search__input--input" id="inputSearch"></Input>
+                    <SearchIcon onSearch={handleSearchClick} />
                     <div onClick={onClickView}>
-                        <h2>Last repos</h2>
+                        <h2 className="last-repos">Last repos</h2>
                         {showViewedRepos && (
                             <ul className="viewed-repos" style={{ marginLeft: '10px' }}>
                                 {viewedRepos.length > 0 ? (
                                     viewedRepos.map(rep => (
-                                        <li key={rep.name}>
+                                        <li key={rep.name} className="viewed-repo">
                                             <Link to={`/${rep.owner}/${rep.name}`}>{rep.name}</Link>
                                         </li>
                                     ))
@@ -108,7 +109,6 @@ const List: React.FC<ListProps> = observer(() => {
                             </ul>
                         )}
                     </div>
-                    <SearchIcon onSearch={handleSearchClick} />
                 </div>
             </div>
 

@@ -103,7 +103,6 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 36px;
-
         .super-input {
             height: 55px;
             max-width: 1100px;
@@ -302,9 +301,37 @@
     font-size: 24px;
 }
 
+.last-repos {
+    font-size: 24px;
+    color: $text-accent;
+    max-width: max-content;
+}
+
+.last-repos:hover {
+    cursor: pointer;
+}
+
 .viewed-repos {
-    position: absolute;
+    position: relative;
     z-index: 2;
+    padding: 10px;
+    margin-top: 10px;
+    max-width: max-content;
+}
+
+.viewed-repo {
+    
+    &:hover {
+        cursor: pointer;
+    }
+
+    a{
+        display: block;
+        text-decoration: none;
+        color: $li-color;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
 }
 
 @keyframes spin {
