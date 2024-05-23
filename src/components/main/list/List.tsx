@@ -91,8 +91,10 @@ const List: React.FC<ListProps> = observer(() => {
             <div className="seletcs">
                 <TypeDropDown onChange={handleNewType} />
                 <div className="inputSearchBlock">
-                    <Input value={inputValue} onChange={handleInputChange} className="search__input--input" id="inputSearch"></Input>
-                    <SearchIcon onSearch={handleSearchClick} />
+                    <div className="search">
+                        <Input value={inputValue} onChange={handleInputChange} className="search__input--input" id="inputSearch"></Input>
+                        <SearchIcon onSearch={handleSearchClick} />
+                    </div>
                     <div onClick={onClickView}>
                         <h2 className="last-repos">Last repos</h2>
                         {showViewedRepos && (
