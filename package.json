@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
-  "homepage": "https://fultlin.github.io/github-client",
+  "homepage": "https://fultlin.github.io/metaclass-project2",
   "scripts": {
     "build": "webpack --mode production",
     "predeploy": "yarn build", 
